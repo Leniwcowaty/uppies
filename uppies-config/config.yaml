@@ -1,0 +1,71 @@
+# config.yaml for uppies
+services:
+  # MANDATORY
+  # Data type: String
+  # Familiar name for checked service
+  first_service: 
+    # MANDATORY
+    # Data type: String
+    # Domain to check, without protocol, ports or path
+    hostname: "foo.bar"
+    # MANDATORY
+    # Data type: Bool
+    # Configures if the service should be checking over http or https
+    https: true
+
+    # OPTIONAL
+    # Data type: Bool
+    # Enable if the certificate is self-signed, otherwise the TLS check will fail
+    # Default value: false
+    self-signed: false
+    # OPTIONAL
+    # Data type: Int
+    # Custom port on which service is served
+    # Default value: 443 if "https" is "true", 80 if "https" is "false"
+    port: 443
+    # Optional
+    # Data type: String
+    # Custom path/endpoint to check, without leading /, in this example uppies will check "https://foo.bar/loremipsum"
+    # Default value: "" (resulting in checking "/")
+    path: loremipsum # Optional, string, path to check without leading slash, eg. "loremipsum" will check foo.bar/loremipsum, defaults to "/" if not provided
+
+alerts:
+  # MANDATORY
+  # Data type: Bool
+  # Configure if you want to enable alerting
+  enable: true
+
+  # OPTIONAL
+  # Data type: String
+  # Custom ntfy server URL, without topic, if you want to use different than https://ntfy.sh 
+  # Default value: "https://ntfy.sh"
+  ntfy-url: "https://ntfy.foo.bar"
+  # OPTIONAL
+  # Data type: String
+  # Custom topic name to follow, if not provided uppies will generate a unique name and store it in uppies-data/ntfy.conf
+  # Default value: [unique psuedo-random string]
+  ntfy-topic: my-topic
+  # OPTIONAL
+  # Data type: String
+  # Ntfy authentication token for custom servers to be put in API request header "Authorization" field
+  # Default value: ""
+  ntfy-auth-token: "***"
+  # THIS SECTION IS MANDATODY IF ALERTS ARE ENABLED
+  events:
+    # OPTIONAL
+    # Data type: Bool
+    # Set if uppies is to monitor response codes, code 200 will result in status "True", any other code will result in status "False"
+    # Default value: false
+    status: true
+    # OPTIONAL
+    # Data type: Bool
+    # Set if uppies is to monitor the TLS/SSL status (validity of the certificate)
+    # Default value: false
+    tls: true
+    # MANDATORY IF TLS MONITORING IS ENABLED
+    expiry:
+      # MANDATORY
+      # Data type: Int
+      # How many days before certificate expiry uppies has to notify you
+      deadline: 7
+

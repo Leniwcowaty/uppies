@@ -1,0 +1,10 @@
+name: uppies-project
+services:
+  uppies:
+    container_name: uppies
+    image: leniwcowaty/uppies:sqlite-0.1
+    environment:
+      - UPPIES_INTERVAL=10
+    volumes:
+      - ./uppies-config:/uppies/uppies-config
+      - ./uppies-data:/uppies/uppies-data
