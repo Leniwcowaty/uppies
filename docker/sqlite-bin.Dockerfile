@@ -1,7 +1,7 @@
 FROM python:3.13-alpine3.23 AS builder
 RUN apk add --no-cache gcc g++ musl-dev python3-dev patchelf binutils
 RUN pip install nuitka pyyaml requests cryptography zstandard
-COPY main-sqlite.py ./main.py
+COPY src/main-sqlite.py ./main.py
 RUN python3 -m nuitka --standalone --onefile --output-filename=uppies main.py
 
 FROM alpine:3.23

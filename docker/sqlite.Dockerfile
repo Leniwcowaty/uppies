@@ -8,6 +8,6 @@ RUN pip install pyyaml requests cryptography
 
 WORKDIR /uppies
 RUN mkdir -p ./uppies-config ./uppies-data
-COPY main-sqlite.py .
+COPY src/main-sqlite.py .
 
 CMD ["python3", "./main-sqlite.py"]
