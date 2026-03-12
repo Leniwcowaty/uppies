@@ -2,7 +2,8 @@
 services:
   # MANDATORY
   # Data type: String
-  # Familiar name for checked service
+  # Section for a single service to be checked, the name should be a familiar name that will be displayed in notifications and in database
+  # You can configure multiple service sections
   first_service: 
     # MANDATORY
     # Data type: String
@@ -12,7 +13,6 @@ services:
     # Data type: Bool
     # Configures if the service should be checking over http or https
     https: true
-
     # OPTIONAL
     # Data type: Bool
     # Enable if the certificate is self-signed, otherwise the TLS check will fail
